@@ -1,0 +1,199 @@
+<!DocType HTML>
+<html>
+    <head>
+        <title>
+            21074786D Drink Ordering System
+        </title>
+        <link href = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <script src = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <script src = "order.js"></script>   
+        <link rel = "stylesheet" href = "styles/main.css">
+    </head>
+    <body>
+        <div class = "my-auto" style = "width: auto; height: auto">
+            <header class = "text-bg-success p-3">
+                <H1 class = "text-center">
+                    Drink Ordering System
+                </H1>
+            </header>
+        </div>
+        <nav class = "navbar navbar-expand-sm navbar-light bg-success-subtle">
+            <button
+            type = "button"
+            data-bs-toggle = "collapse"
+            data-bs-target = "#navbarNav"
+            class = "navbar-toggler"
+            aria-controls = "navbarNav"
+            aria-expanded = "false"
+            aria-label = "Toggle navigation"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class = "collapse navbar-collapse" id="navbarNav">
+                <ul class = "navbar-nav my-auto mx-auto fs-4">
+                    <li class = "nav-item active"> 
+                        <a href = "index.html" class = "nav-link ">Home</a>
+                    </li>
+                    <li class = "nav-item active"> 
+                        <a href = "order.html" class = "nav-link active text-success fw-bold">Order</a>
+                    </li>
+                    <li class = "nav-item active"> 
+                        <a href = "reserve.html" class = "nav-link">Reserve a Table</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class = "container py-4 ">
+            <h2 class = "text-center">
+                Featured Drinks
+            </h2>
+        </div>
+        <!-- Drink Filling Form -->
+        <div class = "container"> 
+            <form method = "post" id = "orderForm" onsubmit = "placeOrder(event)">
+                <!-- Name -->
+                <label for = "name" class = "form label">Name:</label>
+                <input class = "form-control form-control-sm"
+                        type = "text"
+                        placeholder = " "
+                        aria-label = "name"> <br>
+
+                <!-- Drink Select -->
+                <label for = "name" class = "form label">Drink:</label>                       
+                <select class = "form-select" aria-label="drinkSel" id = "drink" onchange = "calculatePrice()">
+                    <option>Please select your drink</option>
+                    <option value = "iced-latte">Iced Latte</option>
+                    <option value = "bml">Bubble Milktea</option>
+                    <option value = "iced-mocha">Iced Mocha</option>
+                </select> <br>    
+
+                <!-- Taste Preference -->
+                <div class = "row justify-content-between d-inline-block d-lg-flex">
+                    <div class = "col-4 “d-flex d-lg-block”">
+                        <!-- Size -->
+                        Size: <br><br>
+
+                        <input type = "radio"
+                        class = "btn-check mb-2 ms-2 ms-lg-0"
+                        name = "size"
+                        id = "ds1" 
+                        autocomplete = "off" 
+                        onchange = "calculatePrice()"
+                        checked>
+                        <label class = "btn btn-outline-success" for = "ds1">Small</label>
+                        <br>
+                        
+                        <input type = "radio"
+                        class = "btn-check mb-2 ms-2 ms-lg-0"
+                        name = "size"
+                        id = "ds2" 
+                        autocomplete = "off" 
+                        onchange = "calculatePrice()"
+                        checked>
+                        <label class = "btn btn-outline-success" for = "ds2">Medium</label>
+                        <br>
+
+                        <input type = "radio"
+                        class = "btn-check"
+                        name = "size"
+                        id = "ds3" 
+                        autocomplete = "off" 
+                        onchange = "calculatePrice()"
+                        checked>
+                        <label class = "btn btn-outline-success" for = "ds3">Large</label>
+                        <br>
+                    </div>
+                    <div class="col-4 “d-flex d-lg-block”">
+                        <!-- Ice Level -->
+                        Ice: <br><br>
+
+                        <input type = "radio"
+                        class = "btn-check mb-2 ms-2 ms-lg-0"
+                        name = "ice"
+                        id = "di1" 
+                        autocomplete = "off" 
+                        checked>
+                        <label class = "btn btn-outline-success" for = "di1">Normal</label>
+                        <br>
+                        
+                        <input type = "radio"
+                        class = "btn-check mb-2 ms-2 ms-lg-0"
+                        name = "ice"
+                        id = "di2" 
+                        autocomplete = "off" 
+                        checked>
+                        <label class = "btn btn-outline-success" for = "di2">Less</label>
+                        <br>
+
+                        <input type = "radio"
+                        class = "btn-check mb-2 ms-2 ms-lg-0"
+                        name = "ice"
+                        id = "di3" 
+                        autocomplete = "off"
+                        checked>
+                        <label class = "btn btn-outline-success" for = "di3">Without Ice</label>
+                        <br>
+                    </div>
+                    <div class = "col-4 “d-flex d-lg-block”">
+                        <!-- Sweetness Level -->
+                        Sweetness: <br><br>
+
+                        <input type = "radio"
+                        class = "btn-check"
+                        name = "sweetness"
+                        id = "di1" 
+                        autocomplete = "off" 
+                        checked>
+                        <label class = "btn btn-outline-success" for = "di1">100%</label>
+                        <br>
+                        
+                        <input type = "radio"
+                        class = "btn-check"
+                        name = "sweetness"
+                        id = "di2" 
+                        autocomplete = "off" 
+                        checked>
+                        <label class = "btn btn-outline-success" for = "di2">50%</label>
+                        <br>
+
+                        <input type = "radio"
+                        class = "btn-check"
+                        name = "sweetness"
+                        id = "di3" 
+                        autocomplete = "off" 
+                        checked>
+                        <label class = "btn btn-outline-success" for = "di3">0%</label>
+                        <br><br>
+                    </div>
+                </div>
+                <div>
+                    <h2>Price: $<span id = "price">0</span></h2>
+                </div>
+                <div>
+                    <input type = "button"
+                    class = "btn-check"
+                    name = "submit"
+                    id = "submit" 
+                    autocomplete = "off"
+                    onclick = "showMsg()" 
+                    checked>
+                    <label class = "btn btn-success" for = "submit">Place Order</label>
+                
+                    <input type = "reset"
+                    class = "btn-check"
+                    name = "reset"
+                    id = "reset" 
+                    autocomplete = "off" 
+                    checked>
+                    <label class = "btn btn-warning" for = "reset">Reset</label>
+                </div>
+            </form><br>
+            <h3 id = "postSubmit"></h3>
+        </div>
+    </body>
+    <div class = "fixed-bottom">
+        <footer class = "text-bg-success p-3 text-center">
+            © 21074786D Chan Hin Yeung - EIE4432 Lab 2 Report
+        </footer>
+    </div>
+</html>
